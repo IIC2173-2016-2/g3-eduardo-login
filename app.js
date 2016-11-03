@@ -120,7 +120,6 @@ app.get('/',function(req,res,next){
 });
 app.use('/dashboard', routes);
 app.use('/users', users);
-app.use('/test',test)
 
 // Set Port
 app.set('port', (process.env.PORT || 3000));
