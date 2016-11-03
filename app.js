@@ -16,6 +16,7 @@ var db = mongoose.connection;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var test = require('./routes/chats');
 
 // Init App
 var app = express();
@@ -90,7 +91,7 @@ function foursquare_venues(callback, lat ,long)
 
 	var options = {
 		host: 'api.foursquare.com',
-		path: `/v2/venues/search?client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&v=20130815&ll=${lat},${long}`
+		path: `/v2/venues/search?client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&v=20130815&ll=${lat},${long}&m=foursquare`
 	};
 
 	https.request(options, function(res){
@@ -120,6 +121,7 @@ app.get('/',function(req,res,next){
 });
 app.use('/dashboard', routes);
 app.use('/users', users);
+app.use('/test',test)
 
 // Set Port
 app.set('port', (process.env.PORT || 3000));
